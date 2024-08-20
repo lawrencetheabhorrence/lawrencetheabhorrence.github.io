@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- to replace some items with icons -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cheska Huang</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- font awesome icons -->
+    <script src="https://kit.fontawesome.com/721d14d2a5.js" crossorigin="anonymous"></script>
+    <!-- material icons -->
+    <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+    <!-- Lexend, Lexend Deca, Lexend Exa, Molle fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Lexend+Exa:wght@100..900&family=Lexend:wght@100..900&family=Molle&display=swap" rel="stylesheet">
+
+    <!-- smooth scrolling navigation links
+    <script>
+      const toTop = document.getElementById("toTop");
+      const toBottom = document.getElementById("toBottom");
+      const toBanner = document.getElementById("homelink");
+      const banner = document.getElementById("banner");
+      const toProjects = document.getElementById("projectslink");
+      const projects = document.getElementById("projects");
+      const toFooter = document.getElementById("footerlink");
+      const footer = document.getElementById("links");
+      
+      toTop.addEventListener("click", () => {
+        toBottom.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      toBottom.addEventListener("click", () => {
+        toTop.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      toBanner.addEventListener("click", () => {
+        banner.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      toProjects.addEventListener("click", () => {
+        projects.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+      
+      toFooter.addEventListener("click", () => {
+        footer.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    </script>
+    -->
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a id="homelink" href="#banner">Home</a></li>
+        <li><a id="projectslink" href="#projects">Projects</a></li>
+        <li><a id="footerlink" href="#links">Links</a></li>
+      </ul>
+    </nav>
+    <section id="banner" class="banner">
+      <h1>
+        Hi! I'm Cheska, a software dev.
+        <span class="smiley material-symbols-rounded">
+          sentiment_very_satisfied
+        </span>
+      </h1>
+      <a href="#links" id="toBottom" class="banner-but">
+        <span class="material-symbols-rounded">
+          arrow_circle_down
+        </span>
+      </a>
+    </section>
+    <main>
+      <!-- photo display DOES NOT SHOW ON MOBILE! -->
+      <section class="photo-display">
+        <article class="project-photo">
+          <img src="vet119.png" alt="">
+          <div class="overlay">
+            <h2 class="overlay-text">Vet 119</h2>
+          </div>
+        </article>
+        <article class="project-photo">
+          <img src="wordfactory.png" alt="">
+          <div class="overlay">
+            <h2 class="overlay-text">Word Scrambler</h2>
+          </div>
+        </article>
+      </section>
+      <section id="projects" class="project-list">
+        <article class="project">
+          <div class="proj-text">
+            <h2>Vet 119</h2>
+            <p>Commissioned website under CompSAt as part of a research project in Valenzuela
+            City School of Mathematics and Science. A veterinary clinic
+            management site for DLSAU that allows for setting up appointments
+            online.</p>
+          </div>
+          <a href="https://github.com/marchrius17/Vet119" class="proj-link">
+            <span class="material-symbols-rounded">arrow_outward</span>
+          </a>
+        </article>
+        <article class="project">
+          <div class="proj-text">
+            <h2>Sportsfest Schedule Generator</h2>
+            <p>Research project for PSHS-EVC. A genetic algorithm was
+            implemented in Python to generate suitable schedules for the school's Sportsfest. A web
+            UI was created to facilitate data entry to create schedules.</p>
+          </div>
+          <a href="https://github.com/lawrencetheabhorrence/SF-Scheduler-algo" class="proj-link">
+            <span class="material-symbols-rounded">arrow_outward</span>
+          </a>
+        </article>
+        <article class="project">
+          <div class="proj-text">
+            <h2>Word Scrambler</h2>
+            <p>School project in Grade 9 redone in Svelte. A small web based game based on
+            building words from letters.</p>
+          </div>
+          <a href="https://lawrencetheabhorrence.gitlab.io/Word-Scrambler-Svelte/" class="proj-link">
+            <span class="material-symbols-rounded">arrow_outward</span>
+          </a>
+        </article>
+        <article class="project">
+          <div class="proj-text">
+            <h2>Math Question Generator</h2>
+            <p>(Still in) WIP revamp of a past project written in Haskell. A limited templater
+            that allows for random generation of variables, substitution, and
+            integer arithmetic.</p>
+          </div>
+          <a href="https://github.com/lawrencetheabhorrence/math-question-templater" class="proj-link">
+            <span class="material-symbols-rounded">arrow_outward</span>
+          </a>
+        </article>
+        <article class="project">
+          <div class="proj-text">
+            <h2>AISIS GCal</h2>
+            <p>A Chrome extension that exports an enlistment summary/class schedule on AISIS to the .ical format.</p>
+          </div>
+          <a href="https://github.com/lawrencetheabhorrence/AISIS-GCal" class="proj-link">
+            <span class="material-symbols-rounded">arrow_outward</span>
+          </a>
+        </article>
+      </section>
+    </main>
+    <div id="toTop" class="up-but">
+      <a href="#banner">
+        <span class="material-symbols-rounded">
+          arrow_circle_up
+        </span>
+      </a>
+    </div>
+  </body>
+</html>
