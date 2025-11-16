@@ -22,7 +22,7 @@
       <li>Experience</li>
     </ul>
   </nav>
-  <section class="about-me">
+  <section id="about-me">
     <p>
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
       voluptates sapiente, excepturi dolores id accusamus. Nisi voluptatum
@@ -30,16 +30,29 @@
       similique totam perferendis fuga.
     </p>
   </section>
-  <section class="projects-header">
+  <section id="projects-header">
     <h2>Projects</h2>
   </section>
-  <section class="projects">
+  <section id="projects">
     <article class="project-item">
       <img src="/placeholder.svg" />
       <article class="project-card">
         <h3>Project Name</h3>
         <p>A bit of sample text about the project</p>
       </article>
+    </article>
+  </section>
+  <section class="other-projects-header">
+    <h2>OTHER WORKS</h2>
+  </section>
+  <section id="other-projects"></section>
+  <section class="resume-header">
+    <h2>Resume</h2>
+  </section>
+  <section id="resume">
+    <article class="position-row">
+      <p>June 1999-May 1999: Position</p>
+      <p>Workplace</p>
     </article>
   </section>
 </main>
@@ -106,14 +119,14 @@
     box-shadow: 4px 4px 0 0 rgba(89, 74, 66, 0.28);
   }
 
-  section.about-me {
+  section#about-me {
     margin-left: 10%;
     background: #74675c;
     padding: 2%;
     box-shadow: 8px 8px 0 0 rgba(71, 52, 41, 0.43);
   }
 
-  section.about-me > p {
+  section#about-me > p {
     font-family: "Jersey 15", sans-serif;
     color: white;
     text-align: left;
