@@ -33,6 +33,15 @@
   <section class="projects-header">
     <h2>Projects</h2>
   </section>
+  <section class="projects">
+    <article class="project item">
+      <div></div>
+      <article class="project-card">
+        <h3>Project Name</h3>
+        <p>A bit of sample text about the project</p>
+      </article>
+    </article>
+  </section>
 </main>
 
 <style>
@@ -108,5 +117,32 @@
     font-family: "Jersey 15", sans-serif;
     color: white;
     text-align: left;
+  }
+
+  article.project-card {
+    width: 10vw;
+    min-width: 108px;
+    box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
+  }
+
+  article.project-card > * {
+    width: 100%;
+    font-family: "Jersey 15", sans-serif;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  article.project-card h3 {
+    color: white;
+    background: #5c4c43;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 2%;
+  }
+
+  article.project-card p {
+    color: #463932;
+    background: #fcfaf3;
+    padding: 4%;
   }
 </style>
