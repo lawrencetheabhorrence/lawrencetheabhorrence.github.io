@@ -19,7 +19,7 @@
     <ul class="links">
       <li>About</li>
       <li>Projects</li>
-      <li>Experience</li>
+      <li>Resume</li>
     </ul>
   </nav>
   <section id="about-me">
@@ -50,6 +50,10 @@
     <h2>Resume</h2>
   </section>
   <section id="resume">
+    <article class="position-row">
+      <p>June 1999-May 1999: Position</p>
+      <p>Workplace</p>
+    </article>
     <article class="position-row">
       <p>June 1999-May 1999: Position</p>
       <p>Workplace</p>
@@ -171,5 +175,31 @@
     margin-right: 5vw;
     border-radius: 12px;
     box-shadow: 4px 4px 0.3px 0 rgba(190, 176, 164, 0.92);
+  }
+
+  .position-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 16px;
+    box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
+    margin-bottom: 8px;
+  }
+
+  .position-row:nth-child(odd) {
+    background: #5c4c43;
+    color: white;
+  }
+
+  .position-row:nth-child(even) {
+    background: white;
+    color: #5c4c43;
+  }
+
+  .position-row p {
+    font-family: "Jersey 15", sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 0;
   }
 </style>
