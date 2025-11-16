@@ -34,8 +34,8 @@
     <h2>Projects</h2>
   </section>
   <section class="projects">
-    <article class="project item">
-      <div></div>
+    <article class="project-item">
+      <img src="/placeholder.svg" />
       <article class="project-card">
         <h3>Project Name</h3>
         <p>A bit of sample text about the project</p>
@@ -144,5 +144,19 @@
     color: #463932;
     background: #fcfaf3;
     padding: 4%;
+  }
+
+  .project-item {
+    display: flex;
+    padding-right: 10%;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .project-item > img {
+    flex-grow: 1;
+    margin-right: 5vw;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0.3px 0 rgba(190, 176, 164, 0.92);
   }
 </style>
