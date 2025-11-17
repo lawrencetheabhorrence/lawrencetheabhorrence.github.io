@@ -1,89 +1,196 @@
 <script lang="ts">
+  let navHeight: number | undefined = $state();
+  let socialsHeight: number | undefined = $state();
+  let aboutHeight: number | undefined = $state();
+  let about: HTMLElement | undefined = $state();
+  let aboutOffset = $derived(about?.offsetTop);
+
+  let projectHeight: number | undefined = $state();
+  let projectHeaderHeight: number | undefined = $state();
+  let projectLineTop = $derived(
+    (socialsHeight ?? 0) +
+      (navHeight ?? 0) +
+      (aboutHeight ?? 0) +
+      (projectHeaderHeight ?? 0) +
+      10,
+  );
+
+  let otherHeaderHeight: number | undefined = $state();
+  let otherHeight: number | undefined = $state();
+
+  let otherLineTop = $derived(
+    projectLineTop + (projectHeight ?? 0) + (otherHeaderHeight ?? 0),
+  );
+  let resumeHeaderHeight: number | undefined = $state();
 </script>
 
-<main>
-  <section class="socials-header">
-    <h1>Cheska Huang</h1>
-    <a href="https://www.linkedin.com/in/jfchuang/"
-      ><img alt="LinkedIn" src="/pixel_linkedin.svg" /></a
+<main id="main">
+  <div>
+    <div class="node-line" style="top: {(aboutOffset ?? 0) - 15}px; left: 5px;">
+      <div
+        class="vert-line"
+        style:height|important="{(aboutHeight ?? 0) +
+          15 +
+          Math.floor((projectHeaderHeight ?? 0) / 2)}px"
+      ></div>
+      <div
+        class="vert-line"
+        style="height: 22px; transform: rotate(-30deg);"
+      ></div>
+      <div class="line"></div>
+      <div class="diamond"></div>
+    </div>
+    <div
+      class="node-line"
+      style="top: {projectLineTop}px; right: -27px; transform: scaleX(-1); transform-origin: bottom left;"
     >
-    <a href="https://github.com/lawrencetheabhorrence"
-      ><img alt="GitHub" src="/pixelarticons_github.svg" /></a
+      <div
+        class="vert-line"
+        style:height|important="{(projectHeight ?? 0) -
+          5 +
+          Math.floor((otherHeaderHeight ?? 0) / 2)}px"
+      ></div>
+      <div
+        class="vert-line"
+        style="height: 22px; transform: rotate(-30deg);"
+      ></div>
+      <div class="line"></div>
+      <div class="diamond"></div>
+    </div>
+    <div class="node-line" style="top: {otherLineTop}px; left: 5px;">
+      <div
+        class="vert-line"
+        style:height|important="{(otherHeight ?? 0) -
+          8 +
+          Math.floor((resumeHeaderHeight ?? 0) / 2)}px"
+      ></div>
+      <div
+        class="vert-line"
+        style="height: 22px; transform: rotate(-30deg);"
+      ></div>
+      <div class="line"></div>
+      <div class="diamond"></div>
+    </div>
+    <section bind:offsetHeight={socialsHeight} id="socials-header">
+      <h1>Cheska Huang</h1>
+      <a href="https://www.linkedin.com/in/jfchuang/"
+        ><img alt="LinkedIn" src="/pixel_linkedin.svg" /></a
+      >
+      <a href="https://github.com/lawrencetheabhorrence"
+        ><img alt="GitHub" src="/pixelarticons_github.svg" /></a
+      >
+      <a href="mailto:julyannahuang@gmail.com"
+        ><img alt="Email" src="/pixelarticons_mail.svg" /></a
+      >
+    </section>
+    <nav bind:offsetHeight={navHeight}>
+      <img src="/cross.svg" />
+      <ul class="links">
+        <li>About</li>
+        <li>Projects</li>
+        <li>Resume</li>
+      </ul>
+    </nav>
+    <section bind:this={about} bind:offsetHeight={aboutHeight} id="about-me">
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
+        voluptates sapiente, excepturi dolores id accusamus. Nisi voluptatum
+        deleniti soluta placeat adipisci. Nulla eius consequatur, laborum
+        adipisci similique totam perferendis fuga.
+      </p>
+    </section>
+    <section
+      bind:offsetHeight={projectHeaderHeight}
+      id="projects-header"
+      class="section-header"
     >
-    <a href="mailto:julyannahuang@gmail.com"
-      ><img alt="Email" src="/pixelarticons_mail.svg" /></a
+      <h2>Projects</h2>
+      <div class="line"></div>
+      <img src="/cross.svg" />
+    </section>
+    <section bind:offsetHeight={projectHeight} id="projects">
+      <article class="project-item">
+        <img src="/placeholder.svg" />
+        <article class="project-card">
+          <h3>Project Name</h3>
+          <p>A bit of sample text about the project</p>
+        </article>
+      </article>
+    </section>
+    <section
+      bind:offsetHeight={otherHeaderHeight}
+      id="other-projects-header"
+      class="section-header"
     >
-  </section>
-  <nav>
-    <img src="/cross.svg" />
-    <ul class="links">
-      <li>About</li>
-      <li>Projects</li>
-      <li>Resume</li>
-    </ul>
-  </nav>
-  <section id="about-me">
-    <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
-      voluptates sapiente, excepturi dolores id accusamus. Nisi voluptatum
-      deleniti soluta placeat adipisci. Nulla eius consequatur, laborum adipisci
-      similique totam perferendis fuga.
-    </p>
-  </section>
-  <section id="projects-header">
-    <h2>Projects</h2>
-  </section>
-  <section id="projects">
-    <article class="project-item">
-      <img src="/placeholder.svg" />
+      <img src="/cross.svg" />
+      <div class="line"></div>
+      <h2>OTHER WORKS</h2>
+    </section>
+    <section bind:offsetHeight={otherHeight} id="other-projects">
       <article class="project-card">
         <h3>Project Name</h3>
         <p>A bit of sample text about the project</p>
       </article>
-    </article>
-  </section>
-  <section class="other-projects-header">
-    <h2>OTHER WORKS</h2>
-  </section>
-  <section id="other-projects"></section>
-  <section class="resume-header">
-    <h2>Resume</h2>
-  </section>
-  <section id="resume">
-    <article class="position-row">
-      <p>June 1999-May 1999: Position</p>
-      <p>Workplace</p>
-    </article>
-    <article class="position-row">
-      <p>June 1999-May 1999: Position</p>
-      <p>Workplace</p>
-    </article>
-  </section>
+      <article class="project-card">
+        <h3>Project Name</h3>
+        <p>A bit of sample text about the project</p>
+      </article>
+      <article class="project-card">
+        <h3>Project Name</h3>
+        <p>A bit of sample text about the project</p>
+      </article>
+    </section>
+    <section
+      bind:offsetHeight={resumeHeaderHeight}
+      id="resume-header"
+      class="section-header"
+    >
+      <h2>Resume</h2>
+      <img src="/memory_paperclip.svg" />
+    </section>
+    <section id="resume">
+      <article class="position-row">
+        <p>June 1999-May 1999: Position</p>
+        <p>Workplace</p>
+      </article>
+      <article class="position-row">
+        <p>June 1999-May 1999: Position</p>
+        <p>Workplace</p>
+      </article>
+    </section>
+    <a href="#main">
+      <section id="end">
+        <p>Back to top</p>
+        <img src="/ground.svg" />
+      </section>
+    </a>
+  </div>
 </main>
 
 <style>
   main {
-    background: top left / 8px repeat url("/bgtile.svg");
-    box-shadow:
-      0px 0px 138px 152px rgba(0, 0, 0, 0.05) inset,
-      0px 0px 158px 27px rgba(0, 0, 0, 0.11) inset;
     width: 100vw;
     max-width: 100vw;
     min-height: 100vh;
-    padding: 10vh 15vw 5vh 15vw;
     display: flex;
     flex-flow: column nowrap;
-    align-items: stretch;
+    align-items: center;
   }
 
-  .socials-header {
+  main > div {
+    width: 60%;
+    min-width: 400px;
+    position: relative;
+  }
+
+  #socials-header {
     display: flex;
     align-items: baseline;
     gap: 4px;
     height: min-content;
   }
 
-  .socials-header h1 {
+  #socials-header h1 {
     font-family: "Jersey 25", sans-serif;
     font-size: 3rem;
     margin: 0;
@@ -92,7 +199,7 @@
     color: #5c4c43;
   }
 
-  .socials-header img {
+  #socials-header img {
     width: 1.2rem;
   }
 
@@ -102,7 +209,7 @@
     gap: 4px;
   }
 
-  nav img[src="/cross.svg"] {
+  img[src="/cross.svg"] {
     width: 1rem;
   }
 
@@ -110,6 +217,21 @@
     display: flex;
     list-style-type: none;
     flex-grow: 1;
+  }
+
+  p,
+  h3 {
+    font-family: "Jersey 15", sans-serif;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-family: "Jersey 20", sans-serif;
+    color: #73665b;
+    font-size: 2.2rem;
+    text-shadow: -4px 5px 0 rgba(76, 37, 37, 0.2);
+    text-transform: uppercase;
+    margin: 0;
   }
 
   nav ul > li {
@@ -124,16 +246,21 @@
   }
 
   section#about-me {
-    margin-left: 10%;
+    margin-left: 5vw;
     background: #74675c;
     padding: 2%;
     box-shadow: 8px 8px 0 0 rgba(71, 52, 41, 0.43);
+    margin-bottom: 20px;
   }
 
   section#about-me > p {
     font-family: "Jersey 15", sans-serif;
     color: white;
     text-align: left;
+  }
+
+  section#projects {
+    padding-right: 0%;
   }
 
   article.project-card {
@@ -144,8 +271,6 @@
 
   article.project-card > * {
     width: 100%;
-    font-family: "Jersey 15", sans-serif;
-    font-size: 1rem;
     margin: 0;
   }
 
@@ -163,6 +288,10 @@
     padding: 4%;
   }
 
+  #about-me {
+    border-left: 3px solid #846a5b;
+  }
+
   .project-item {
     display: flex;
     padding-right: 10%;
@@ -174,6 +303,7 @@
     flex-grow: 1;
     margin-right: 5vw;
     border-radius: 12px;
+    max-width: 70%;
     box-shadow: 4px 4px 0.3px 0 rgba(190, 176, 164, 0.92);
   }
 
@@ -197,9 +327,79 @@
   }
 
   .position-row p {
-    font-family: "Jersey 15", sans-serif;
-    font-size: 1rem;
     text-transform: uppercase;
     margin: 0;
+  }
+
+  #end p {
+    color: rgba(115, 102, 91, 0.76);
+    text-transform: uppercase;
+    margin: 20vh 0 0 0;
+  }
+
+  #end img {
+    width: 20px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+  }
+
+  div.line {
+    flex-grow: 1;
+    background-color: #846a5b;
+    height: 3px;
+    box-shadow: 0 2px 0 rgba(44, 24, 24, 0.25);
+    margin: 0 4px;
+    border-radius: 9999px;
+  }
+
+  #projects-header,
+  #resume-header {
+    padding-left: 10%;
+  }
+
+  #other-projects-header {
+    padding-right: 10%;
+  }
+
+  #other-projects {
+    padding: 8px 2%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+  }
+
+  .node-line {
+    position: absolute;
+    width: 5%;
+    min-width: 32px;
+  }
+  div.vert-line {
+    width: 3px;
+    background-color: #846a5b;
+    transform-origin: top left;
+  }
+
+  .node-line .line {
+    box-shadow: none;
+    background-color: #846a5b;
+    width: 16px;
+    border-radius: 0;
+    height: 3px;
+    position: relative;
+    bottom: 6px;
+    left: 7px;
+  }
+
+  .node-line .diamond {
+    width: 10px;
+    aspect-ratio: 1 / 1;
+    background-color: #846a5b;
+    transform: rotate(45deg);
+    position: absolute;
+    bottom: 1.2%;
+    right: 0;
   }
 </style>
