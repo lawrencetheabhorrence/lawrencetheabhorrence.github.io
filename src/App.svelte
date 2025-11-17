@@ -85,6 +85,7 @@
     </section>
     <nav bind:offsetHeight={navHeight}>
       <img src="/cross.svg" />
+      <div class="line" />
       <ul class="links">
         <li>About</li>
         <li>Projects</li>
@@ -207,6 +208,26 @@
     align-self: flex-start;
     display: flex;
     gap: 4px;
+    position: relative;
+  }
+
+  .line {
+    box-shadow: none;
+    background-color: #846a5b;
+    height: 3px;
+  }
+
+  nav .line {
+    background-color: #846a5b;
+    z-index: 0;
+    width: 99%;
+    left: 12px;
+    top: 46%;
+    position: absolute;
+  }
+
+  nav > * {
+    z-index: 5;
   }
 
   img[src="/cross.svg"] {
