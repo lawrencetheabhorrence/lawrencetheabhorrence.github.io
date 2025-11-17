@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { sitedata } from "./sitedata";
   let navHeight: number | undefined = $state();
   let socialsHeight: number | undefined = $state();
   let aboutHeight: number | undefined = $state();
@@ -7,6 +8,8 @@
 
   let projectHeight: number | undefined = $state();
   let projectHeaderHeight: number | undefined = $state();
+  let otherHeaderHeight: number | undefined = $state();
+  let otherHeight: number | undefined = $state();
   let projectLineTop = $derived(
     (socialsHeight ?? 0) +
       (navHeight ?? 0) +
@@ -15,13 +18,10 @@
       10,
   );
 
-  let otherHeaderHeight: number | undefined = $state();
-  let otherHeight: number | undefined = $state();
-
-  let otherLineTop = $derived(
-    projectLineTop + (projectHeight ?? 0) + (otherHeaderHeight ?? 0),
-  );
   let resumeHeaderHeight: number | undefined = $state();
+  let otherLineTop = $derived(
+    projectLineTop + (projectHeight ?? 0) + (otherHeaderHeight ?? 0) + 15,
+  );
 </script>
 
 <main id="main">
@@ -42,12 +42,12 @@
     </div>
     <div
       class="node-line"
-      style="top: {projectLineTop}px; right: -27px; transform: scaleX(-1); transform-origin: bottom left;"
+      style="top: {projectLineTop}px; right: 5px; transform: scaleX(-1); transform-origin: bottom center;"
     >
       <div
         class="vert-line"
-        style:height|important="{(projectHeight ?? 0) -
-          5 +
+        style:height|important="{(projectHeight ?? 0) +
+          10 +
           Math.floor((otherHeaderHeight ?? 0) / 2)}px"
       ></div>
       <div
@@ -87,8 +87,8 @@
       <img src="/cross.svg" />
       <div class="line" />
       <ul class="links">
-        <li>About</li>
-        <li>Projects</li>
+        <li><a href="#about-me">About</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li>Resume</li>
       </ul>
     </nav>
@@ -110,13 +110,15 @@
       <img src="/cross.svg" />
     </section>
     <section bind:offsetHeight={projectHeight} id="projects">
-      <article class="project-item">
-        <img src="/placeholder.svg" />
-        <article class="project-card">
-          <h3>Project Name</h3>
-          <p>A bit of sample text about the project</p>
+      {#each sitedata.projects as project}
+        <article class="project-item">
+          <img src={project.image ?? "/placeholder.svg"} />
+          <article class="project-card">
+            <h3>{project.name}</h3>
+            <p>{project.description}</p>
+          </article>
         </article>
-      </article>
+      {/each}
     </section>
     <section
       bind:offsetHeight={otherHeaderHeight}
@@ -128,18 +130,12 @@
       <h2>OTHER WORKS</h2>
     </section>
     <section bind:offsetHeight={otherHeight} id="other-projects">
-      <article class="project-card">
-        <h3>Project Name</h3>
-        <p>A bit of sample text about the project</p>
-      </article>
-      <article class="project-card">
-        <h3>Project Name</h3>
-        <p>A bit of sample text about the project</p>
-      </article>
-      <article class="project-card">
-        <h3>Project Name</h3>
-        <p>A bit of sample text about the project</p>
-      </article>
+      {#each sitedata.otherProjects as project}
+        <article class="project-card">
+          <h3>{project.name}</h3>
+          <p>{project.description}</p>
+        </article>
+      {/each}
     </section>
     <section
       bind:offsetHeight={resumeHeaderHeight}
@@ -150,14 +146,12 @@
       <img src="/memory_paperclip.svg" />
     </section>
     <section id="resume">
-      <article class="position-row">
-        <p>June 1999-May 1999: Position</p>
-        <p>Workplace</p>
-      </article>
-      <article class="position-row">
-        <p>June 1999-May 1999: Position</p>
-        <p>Workplace</p>
-      </article>
+      {#each sitedata.resume as job}
+        <article class="position-row">
+          <p>{job.date}: {job.position}</p>
+          <p>{job.organization}</p>
+        </article>
+      {/each}
     </section>
     <a href="#main">
       <section id="end">
@@ -170,12 +164,17 @@
 
 <style>
   main {
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    margin-top: 5vh;
+    max-width: 100%;
     min-height: 100vh;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+  }
+
+  a {
+    color: white;
   }
 
   main > div {
@@ -193,7 +192,7 @@
 
   #socials-header h1 {
     font-family: "Jersey 25", sans-serif;
-    font-size: 3rem;
+    font-size: 4rem;
     margin: 0;
     margin-right: 0.5rem;
     text-shadow: 0 3px 0 rgba(76, 37, 37, 0.28);
@@ -243,13 +242,13 @@
   p,
   h3 {
     font-family: "Jersey 15", sans-serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   h2 {
     font-family: "Jersey 20", sans-serif;
     color: #73665b;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     text-shadow: -4px 5px 0 rgba(76, 37, 37, 0.2);
     text-transform: uppercase;
     margin: 0;
@@ -261,13 +260,13 @@
     padding: 2px 8px;
     color: white;
     font-family: "Jersey 15", sans-serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     box-shadow: 4px 4px 0 0 rgba(89, 74, 66, 0.28);
   }
 
   section#about-me {
-    margin-left: 5vw;
+    margin-left: 3%;
     background: #74675c;
     padding: 2%;
     box-shadow: 8px 8px 0 0 rgba(71, 52, 41, 0.43);
@@ -285,8 +284,8 @@
   }
 
   article.project-card {
-    width: 10vw;
-    min-width: 108px;
+    width: 30%;
+    min-width: 150px;
     box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
   }
 
@@ -315,14 +314,15 @@
 
   .project-item {
     display: flex;
-    padding-right: 10%;
+    padding-right: 5%;
     width: 100%;
     align-items: flex-start;
+    margin-bottom: 2vh;
   }
 
   .project-item > img {
     flex-grow: 1;
-    margin-right: 5vw;
+    margin-right: 3%;
     border-radius: 12px;
     max-width: 70%;
     box-shadow: 4px 4px 0.3px 0 rgba(190, 176, 164, 0.92);
@@ -389,7 +389,20 @@
     padding: 8px 2%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    margin-left: 5%;
+    gap: 2%;
     place-items: center;
+  }
+
+  #other-projects .project-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #other-projects .project-card p {
+    flex-grow: 1;
   }
 
   .node-line {
@@ -406,7 +419,7 @@
   .node-line .line {
     box-shadow: none;
     background-color: #846a5b;
-    width: 16px;
+    width: 90%;
     border-radius: 0;
     height: 3px;
     position: relative;
@@ -415,12 +428,12 @@
   }
 
   .node-line .diamond {
-    width: 10px;
+    width: 12px;
     aspect-ratio: 1 / 1;
     background-color: #846a5b;
     transform: rotate(45deg);
     position: absolute;
-    bottom: 1.2%;
-    right: 0;
+    bottom: 2px;
+    left: 90%;
   }
 </style>
