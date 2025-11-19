@@ -7,19 +7,19 @@ export const sitedata = {
   aboutText: "",
   projects: [
     {
-      image: null,
+      video: "/bluestar-ps.webm",
       name: "Bluestar Forecast",
       description: "A fortune telling game made for Orsem 2025",
       link: "bluestar.theguidon.com"
     },
     {
-      image: null,
+      video: "/bluelingo-ps.webm",
       name: "Campus Crossword",
       description: "An Ateneo-themed crossword made for Orsem 2025",
       link: "bluelingo.theguidon.com"
     },
     {
-      image: null,
+      video: null,
       name: "UAAP S88 1st Sem Primer",
       description: "A digital primer for Ateneo's athletes of UAAP Season 88.",
       link: ""

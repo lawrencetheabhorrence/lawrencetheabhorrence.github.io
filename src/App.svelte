@@ -1,5 +1,7 @@
 <script lang="ts">
   import { sitedata } from "./sitedata";
+
+  let mainWidth: number | undefined = $state();
   let navHeight: number | undefined = $state();
   let socialsHeight: number | undefined = $state();
   let aboutHeight: number | undefined = $state();
@@ -24,7 +26,7 @@
   );
 </script>
 
-<main id="main">
+<main bind:offsetWidth={mainWidth} id="main">
   <div>
     <div class="node-line" style="top: {(aboutOffset ?? 0) - 15}px; left: 5px;">
       <div
@@ -93,12 +95,11 @@
       </ul>
     </nav>
     <section bind:this={about} bind:offsetHeight={aboutHeight} id="about-me">
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam
-        voluptates sapiente, excepturi dolores id accusamus. Nisi voluptatum
-        deleniti soluta placeat adipisci. Nulla eius consequatur, laborum
-        adipisci similique totam perferendis fuga.
-      </p>
+      <div class="about-cont">
+        <p style="text-align: center;">
+          Hi! I'm a third-year Computer Science student who makes things :D
+        </p>
+      </div>
     </section>
     <section
       bind:offsetHeight={projectHeaderHeight}
@@ -112,7 +113,8 @@
     <section bind:offsetHeight={projectHeight} id="projects">
       {#each sitedata.projects as project}
         <article class="project-item">
-          <img src={project.image ?? "/placeholder.svg"} />
+          <video autoplay loop src={project.video ?? "/placeholder-ps.webm"}>
+          </video>
           <article class="project-card">
             <h3>{project.name}</h3>
             <p>{project.description}</p>
@@ -146,8 +148,8 @@
       <img src="/memory_paperclip.svg" />
     </section>
     <section id="resume">
-      {#each sitedata.resume as job}
-        <article class="position-row">
+      {#each sitedata.resume as job, i}
+        <article class="position-row" style:width|important={mainWidth}>
           <p>{job.date}: {job.position}</p>
           <p>{job.organization}</p>
         </article>
@@ -271,10 +273,16 @@
     padding: 2%;
     box-shadow: 8px 8px 0 0 rgba(71, 52, 41, 0.43);
     margin-bottom: 20px;
+    transform-origin: top left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  section#about-me > p {
+  section#about-me p {
     font-family: "Jersey 15", sans-serif;
+    width: 100%;
+    font-size: 1.8rem;
     color: white;
     text-align: left;
   }
@@ -320,7 +328,7 @@
     margin-bottom: 2vh;
   }
 
-  .project-item > img {
+  .project-item > video {
     flex-grow: 1;
     margin-right: 3%;
     border-radius: 12px;
@@ -333,8 +341,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 4px 16px;
+    width: 60vw;
     box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    transform-origin: top center;
+    animation: 1s ease-in-out 0s listItemEnter;
   }
 
   .position-row:nth-child(odd) {
@@ -435,5 +446,15 @@
     position: absolute;
     bottom: 2px;
     left: 90%;
+  }
+
+  @keyframes listItemEnter {
+    from {
+      transform: rotateX(-90deg) perspective(350px);
+    }
+
+    to {
+      transform: rotateX(0deg) perspective(250px);
+    }
   }
 </style>
