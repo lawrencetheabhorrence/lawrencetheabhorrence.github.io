@@ -318,9 +318,15 @@
     width: 30%;
     min-width: 150px;
     box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
+    transition: 350ms ease-in-out all;
     animation:
       1000ms cubic-bezier(0.86, 0, 0.14, 1) 0s listItemEnter,
       1000ms cubic-bezier(1, 0, 0, 1) 0ms shadowEnter;
+  }
+
+  .project-item:hover > article.project-card,
+  article.project-card:hover {
+    box-shadow: 8px 8px 0 0 rgba(92, 76, 67, 0.26);
   }
 
   article.project-card > * {
@@ -360,6 +366,11 @@
     border-radius: 12px;
     max-width: 70%;
     box-shadow: 4px 4px 0.3px 0 rgba(190, 176, 164, 0.92);
+    transition: 350ms ease-in-out all;
+  }
+
+  .project-item:hover > video {
+    box-shadow: 8px 8px 0.3px 0 rgba(190, 176, 164, 0.92);
   }
 
   .position-row {
