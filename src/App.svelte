@@ -145,7 +145,7 @@
       class="section-header"
     >
       <h2>Resume</h2>
-      <img src="/memory_paperclip.svg" />
+      <a href={sitedata.resumeLink}><img src="/memory_paperclip.svg" /></a>
     </section>
     <section id="resume">
       {#each sitedata.resume as job, i}
@@ -198,11 +198,23 @@
     margin: 0;
     margin-right: 0.5rem;
     text-shadow: 0 3px 0 rgba(76, 37, 37, 0.28);
+    transition: 450ms cubic-bezier(0.44, 0, 0.56, 1) text-shadow;
     color: #5c4c43;
   }
 
+  #socials-header:hover h1 {
+    text-shadow: 2px 5px 0 rgba(76, 37, 37, 0.28);
+  }
+
   #socials-header img {
-    width: 1.2rem;
+    width: 22px;
+    transition: 350ms cubic-bezier(1, 0, 0, 1) all;
+  }
+
+  #socials-header img:hover {
+    transform: scale(1.3) translateY(-2px);
+    margin-right: 4px;
+    margin-left: 4px;
   }
 
   nav {
@@ -251,9 +263,14 @@
     font-family: "Jersey 20", sans-serif;
     color: #73665b;
     font-size: 2.5rem;
-    text-shadow: -4px 5px 0 rgba(76, 37, 37, 0.2);
+    text-shadow: -3px 3px 0 rgba(76, 37, 37, 0.2);
     text-transform: uppercase;
+    transition: 250ms ease-in-out text-shadow;
     margin: 0;
+  }
+
+  h2:hover {
+    text-shadow: -5px 5px 0 rgba(76, 37, 37, 0.2);
   }
 
   nav ul > li {
@@ -265,6 +282,12 @@
     font-size: 1.5rem;
     text-transform: uppercase;
     box-shadow: 4px 4px 0 0 rgba(89, 74, 66, 0.28);
+    transition: 350ms cubic-bezier(1, 0, 0, 1) all;
+  }
+
+  nav ul > li:hover {
+    padding: 2px 16px;
+    margin-right: 12px;
   }
 
   section#about-me {
@@ -295,6 +318,9 @@
     width: 30%;
     min-width: 150px;
     box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
+    animation:
+      1000ms cubic-bezier(0.86, 0, 0.14, 1) 0s listItemEnter,
+      1000ms cubic-bezier(1, 0, 0, 1) 0ms shadowEnter;
   }
 
   article.project-card > * {
@@ -345,7 +371,13 @@
     box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
     margin-bottom: 12px;
     transform-origin: top center;
-    animation: 1s ease-in-out 0s listItemEnter;
+    transition: 250ms ease-in-out all;
+  }
+
+  .position-row:hover {
+    padding: 16px 16px;
+    box-shadow: 4px 6px 0 0 rgba(92, 76, 67, 0.26);
+    margin-bottom: 14px;
   }
 
   .position-row:nth-child(odd) {
@@ -360,6 +392,7 @@
 
   .position-row p {
     text-transform: uppercase;
+    font-size: clamp(12px, 2vw, 20px);
     margin: 0;
   }
 
@@ -367,10 +400,20 @@
     color: rgba(115, 102, 91, 0.76);
     text-transform: uppercase;
     margin: 20vh 0 0 0;
+    transition: 250ms ease-in-out color;
   }
 
   #end img {
-    width: 20px;
+    width: 28px;
+    transition: 250ms ease-in-out filter;
+  }
+
+  #end:hover p {
+    color: #7c6e64;
+  }
+
+  #end:hover img {
+    filter: brightness(0) saturate(100%);
   }
 
   .section-header {
@@ -390,6 +433,16 @@
   #projects-header,
   #resume-header {
     padding-left: 10%;
+  }
+
+  #resume-header img {
+    transform: rotate(-6deg);
+    transition: 300ms cubic-bezier(0.44, 0, 0.56, 1) all;
+    transform-origin: bottom center;
+  }
+
+  #resume-header a:hover img {
+    transform: rotate(-12deg) translateY(-2px);
   }
 
   #other-projects-header {
@@ -448,13 +501,21 @@
     left: 90%;
   }
 
+  @keyframes shadowEnter {
+    from {
+      box-shadow: 0px 0px 0 0 rgba(92, 76, 67, 0.26);
+    }
+    to {
+      box-shadow: 4px 4px 0 0 rgba(92, 76, 67, 0.26);
+    }
+  }
   @keyframes listItemEnter {
     from {
-      transform: rotateX(-90deg) perspective(350px);
+      clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%);
     }
 
     to {
-      transform: rotateX(0deg) perspective(250px);
+      clip-path: polygon(0% 0%, 115% 0%, 115% 115%, 0% 115%);
     }
   }
 </style>

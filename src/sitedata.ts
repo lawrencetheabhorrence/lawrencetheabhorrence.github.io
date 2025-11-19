@@ -2,8 +2,9 @@ export const sitedata = {
   socials: {
     linkedIn: "",
     gitHub: "",
-    email: ""
+    email: "",
   },
+  resumeLink: "https://drive.google.com/uc?export=download&id=1TKWq57pIhDvR1BdV9kCSzxEye94l8XLa",
   aboutText: "",
   projects: [
     {
@@ -60,7 +61,7 @@ export const sitedata = {
     },
     {
       date: "July 2021 — July 2022",
-      position: "Student Assisstant Programmer",
+      position: "Student Assistant Programmer",
       organization: "RedRoot Artists' Cooperative"
     }
   ]
