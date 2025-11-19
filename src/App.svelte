@@ -1,5 +1,20 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { sitedata } from "./sitedata";
+  import TypeIt from "typeit";
+  import { animate, stagger } from "animejs";
+
+  const options = {
+    strings: [
+      "Hi! I'm Cheska, a third-year Computer Science student who builds stuff.",
+    ],
+    speed: 40,
+    waitUntilVisible: true,
+  };
+
+  onMount(() => {
+    new TypeIt("#about-p", options).go();
+  });
 
   let mainWidth: number | undefined = $state();
   let navHeight: number | undefined = $state();
@@ -90,15 +105,13 @@
       <div class="line" />
       <ul class="links">
         <li><a href="#about-me">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li>Resume</li>
+        <li><a href="#projects-header">Projects</a></li>
+        <li><a href="#resume-header">Resume</a></li>
       </ul>
     </nav>
     <section bind:this={about} bind:offsetHeight={aboutHeight} id="about-me">
       <div class="about-cont">
-        <p style="text-align: center;">
-          Hi! I'm a third-year Computer Science student who makes things :D
-        </p>
+        <p id="about-p" style="text-align: center;"></p>
       </div>
     </section>
     <section
@@ -116,7 +129,23 @@
           <video autoplay loop src={project.video ?? "/placeholder-ps.webm"}>
           </video>
           <article class="project-card">
-            <h3>{project.name}</h3>
+            <div class="project-cardheader">
+              <h3>{project.name}</h3>
+              {#if project.link}
+                <a href={project.link}>
+                  <svg
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M4 6h7v2H4v8h7v2H2V6h2zm16 0h-7v2h7v8h-7v2h9V6h-2zm-3 5H7v2h10v-2z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+              {/if}
+            </div>
             <p>{project.description}</p>
           </article>
         </article>
@@ -132,9 +161,25 @@
       <h2>OTHER WORKS</h2>
     </section>
     <section bind:offsetHeight={otherHeight} id="other-projects">
-      {#each sitedata.otherProjects as project}
+      {#each sitedata.otherProjects as project, ix}
         <article class="project-card">
-          <h3>{project.name}</h3>
+          <div class="project-cardheader">
+            <h3>{project.name}</h3>
+            {#if project.link}
+              <a href={project.link}>
+                <svg
+                  fill="white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M4 6h7v2H4v8h7v2H2V6h2zm16 0h-7v2h7v8h-7v2h9V6h-2zm-3 5H7v2h10v-2z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </a>
+            {/if}
+          </div>
           <p>{project.description}</p>
         </article>
       {/each}
@@ -305,7 +350,7 @@
   section#about-me p {
     font-family: "Jersey 15", sans-serif;
     width: 100%;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: white;
     text-align: left;
   }
@@ -334,12 +379,22 @@
     margin: 0;
   }
 
-  article.project-card h3 {
+  article.project-card .project-cardheader {
     color: white;
     background: #5c4c43;
     text-transform: uppercase;
     text-align: center;
-    padding: 2%;
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .project-cardheader h3 {
+    padding: 0;
+  }
+  .project-cardheader svg {
+    width: 20px;
   }
 
   article.project-card p {
@@ -405,6 +460,18 @@
     text-transform: uppercase;
     font-size: clamp(12px, 2vw, 20px);
     margin: 0;
+  }
+
+  #resume {
+    margin-bottom: 30vh;
+  }
+  #end {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 12px;
   }
 
   #end p {

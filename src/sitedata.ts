@@ -11,31 +11,31 @@ export const sitedata = {
       video: "/bluestar-ps.webm",
       name: "Bluestar Forecast",
       description: "A fortune telling game made for Orsem 2025",
-      link: "bluestar.theguidon.com"
+      link: "https://bluestar.theguidon.com"
     },
     {
       video: "/bluelingo-ps.webm",
       name: "Campus Crossword",
       description: "An Ateneo-themed crossword made for Orsem 2025",
-      link: "bluelingo.theguidon.com"
+      link: "https://bluelingo.theguidon.com"
     },
     {
       video: null,
-      name: "UAAP S88 1st Sem Primer",
+      name: "UAAP S88\n1st Sem Primer",
       description: "A digital primer for Ateneo's athletes of UAAP Season 88.",
-      link: ""
+      link: "https://theguidon.com/uaap-88-primer-first-semester/"
     }
   ],
   otherProjects: [
     {
       name: "AISIS-ICal",
       description: "Firefox/Chrome extension to export AISIS schedules to the ICal format.",
-      link: ""
+      link: "https://github.com/lawrencetheabhorrence/aisis-ical-v2"
     },
     {
       name: "Simple Regex",
       description: "Toy regex project made for CSCI 40.",
-      link: ""
+      link: "https://github.com/lawrencetheabhorrence/CSCI40-Exercise1"
     }
   ],
   resume: [

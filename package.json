@@ -19,6 +19,8 @@
     "vite": "^7.2.2"
   },
   "dependencies": {
-    "animejs": "^4.2.2"
+    "animejs": "^4.2.2",
+    "typed.js": "^2.1.0",
+    "typeit": "^8.8.7"
   }
 }
