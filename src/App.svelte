@@ -126,7 +126,12 @@
     <section bind:offsetHeight={projectHeight} id="projects">
       {#each sitedata.projects as project}
         <article class="project-item">
-          <video autoplay loop src={project.video ?? "/placeholder-ps.webm"}>
+          <video
+            autoplay
+            loop
+            muted
+            src={project.video ?? "/placeholder-ps.webm"}
+          >
           </video>
           <article class="project-card">
             <div class="project-cardheader">
