@@ -469,6 +469,12 @@
 
   #resume {
     margin-bottom: 30vh;
+    width: 100%;
+    height: 250px;
+  }
+
+  #resume > * {
+    width: 100%;
   }
   #end {
     display: flex;
@@ -476,7 +482,7 @@
     align-items: center;
     width: 100%;
     position: absolute;
-    bottom: 12px;
+    bottom: 24px;
   }
 
   #end p {
